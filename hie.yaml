@@ -1,5 +1,9 @@
 cradle:
   multi:
+    - path: "./exe"
+      config:
+        cradle:
+          cabal:
     - path: "./src"
       config:
         cradle:

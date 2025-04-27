@@ -1,7 +1,7 @@
 levels:
 - '-'
 mode:
-  tag: TraceStd
+  tag: TraceDisabled
 runtimeLevelsOverrideEnvVar:
   tag: CapsPackageName
 traceMessage:

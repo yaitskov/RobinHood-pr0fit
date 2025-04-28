@@ -8,7 +8,7 @@
     "attoparsec-monoidal": {
         "branch": "master",
         "repo": "/home/dan/pro/haskell/attoparsec",
-        "rev": "25bc3e5008a485834c49b3b1d96289f44fb01dd3",
+        "rev": "d162230d68a85e27d935c3bacdd51e6c424bc4d4",
         "type": "git"
     },
     "nixpkgs": {

@@ -37,9 +37,7 @@ parseRow = do
     go = do
       cells <- many' (parseCell <* char8 ',')
       firstCell <- parseCell
-      -- reverse is a workaround due many' bug for Backward mode
-      -- many' should be in a class
-      pure $ firstCell : reverse cells
+      pure $ firstCell : cells
 
 readBlock :: Handle -> ProfitM ByteString
 readBlock h = do

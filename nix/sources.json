@@ -1,49 +1,30 @@
 {
-    "trace-embrace": {
-        "branch": "master",
-        "repo": "/home/dan/pro/seed-projects/trace-if",
-        "rev": "6c6c61c7fbfdbdc08885d2cbb0d4ccaf2678c33b",
-        "type": "git"
-    },
     "nixpkgs": {
         "branch": "master",
-        "repo": "/home/dan/pro/nixpkgs",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
         "rev": "e7a98efedcc1d0a2a8455580c562b20718c36444",
-        "type": "git"
-    },
-    "dataframe": {
-        "branch": "main",
-        "owner": "mchav",
-        "repo": "dataframe",
-        "rev": "c7263f802cd7dd48951119c62da1fca972398858",
-        "sha256": "sha256:0nih8q2mhq28vicswbbyb6sm2054xagj6fxhklahm4d4wvx9vgjs",
+        "sha256": "sha256:0pcvllrvnbr2s1sfc8gizz864b1wwz9mac3ri3fmkrxvajwlmmdd",
         "type": "tarball",
-        "url": "https://github.com/mchav/dataframe/archive/c7263f802cd7dd48951119c62da1fca972398858.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/e7a98efedcc1d0a2a8455580c562b20718c36444.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "statistics": {
-        "branch": "master",
-        "description": "A fast, high quality library for computing with statistics in Haskell.",
-        "homepage": "http://hackage.haskell.org/package/statistics",
-        "owner": "haskell",
-        "repo": "statistics",
-        "rev": "e62928544432eecd8df2db451c1e45e5688a9f2d",
-        "sha256": "15cw7v8pkjbgqka1pg46n8c48yawzz8l5h9salck7crj7hakn1rd",
-        "type": "tarball",
-        "url": "https://github.com/haskell/statistics/archive/e62928544432eecd8df2db451c1e45e5688a9f2d.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    "trace-embrace": {
+        "sha256": "05y2v33k978kbmvrilfvy8pkdkswygdxn4draqs7wlpsam0ds1pn",
+        "url": "https://github.com/yaitskov/trace-embrace/archive/6c6c61c7fbfdbdc08885d2cbb0d4ccaf2678c33b.tar.gz",
+        "url_template": "https://github.com/yaitskov/trace-embrace/archive/6c6c61c7fbfdbdc08885d2cbb0d4ccaf2678c33b.tar.gz",
+        "type": "tarball"
     },
-    "th-utilities": {
-        "branch": "typeRepToType-TypeLits",
-        "repo": "file:///home/dan/pro/haskell/th-utilities",
-        "rev": "5bdc9c3e0c0f969681d6f7333acd9bdc292c6527",
-        "type": "git"
-    },
-
     "upload-doc-to-hackage": {
-        "branch": "master",
-        "repo": "/home/dan/pro/script/upload-doc-to-hackage",
-        "rev": "345639ca7e491a84a06538fc7b2bf6fedf0c0681",
-        "type": "git"
+        "sha256": "0r1q21dngyalrm0ad204y470wr3s89mssbw9qi195hpgbp8qs8d2",
+        "type": "tarball",
+        "url": "https://github.com/yaitskov/upload-doc-to-hackage/archive/a180b14b21610ce39f296ad7b9dcf6dfe9ac69cf.tar.gz",
+        "url_template": "https://github.com/yaitskov/upload-doc-to-hackage/archive/a180b14b21610ce39f296ad7b9dcf6dfe9ac69cf.tar.gz"
+    },
+    "attoparsec-monoidal": {
+        "sha256": "109c8drrb8capcxk52yi8dcq7h6168pp5ra9b3xr5whvm51q7vb3",
+        "url": "https://github.com/yaitskov/attoparsec-monoidal/archive/d162230d68a85e27d935c3bacdd51e6c424bc4d4.tar.gz",
+        "url_template": "https://github.com/yaitskov/attoparsec-monoidal/archive/d162230d68a85e27d935c3bacdd51e6c424bc4d4.tar.gz",
+        "type": "tarball"
     }
 }

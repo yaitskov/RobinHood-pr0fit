@@ -17,6 +17,7 @@ let
 
   sources = [
     "^src.*$"
+    "^exe.*$"
     "^test.*$"
     "^.*\\.cabal$"
   ];

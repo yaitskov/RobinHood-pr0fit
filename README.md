@@ -7,7 +7,7 @@ without pandas or similar library.
 Python version struggles form pandas warnings I was not able to fix.
 
 Main purpose for this version is to use
-[attoparsec-monoidal](https://github.com/yaitskov/attoparsec-monoidal)
+[attoparsec-isotropic](https://github.com/yaitskov/attoparsec-isotropic)
 to implement right-to-left incremental CSV parser.  Such trick gives
 advantage over RAM gready Python version loading whole CSV report in
 memory.
@@ -17,7 +17,7 @@ follow in reverse chronological order. So one way stream parsing with
 original attoparsec is not possible.
 
 Another minor feature is experimenting with Decimal type for lossless
-handling accound balance and average stock price.
+handling account balance and average stock price.
 
 ## Usage
 

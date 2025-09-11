@@ -1,14 +1,14 @@
 {
     "trace-embrace": {
         "branch": "master",
-        "repo": "/home/dan/pro/seed-projects/trace-if",
-        "rev": "6c6c61c7fbfdbdc08885d2cbb0d4ccaf2678c33b",
+        "repo": "/home/dan/pro/haskell/my/trace-embrace",
+        "rev": "9b6786e8d7d5ef938ae9a03533a1e4cd121d9197",
         "type": "git"
     },
-    "attoparsec-monoidal": {
+    "attoparsec-isotropic": {
         "branch": "master",
-        "repo": "/home/dan/pro/haskell/attoparsec",
-        "rev": "d162230d68a85e27d935c3bacdd51e6c424bc4d4",
+        "repo": "/home/dan/pro/haskell/my/attoparsec-isotropic",
+        "rev": "f60c6cc555e5f119752dadfdd4720ae21a380e93",
         "type": "git"
     },
     "nixpkgs": {
@@ -19,7 +19,7 @@
     },
     "upload-doc-to-hackage": {
         "branch": "master",
-        "repo": "/home/dan/pro/script/upload-doc-to-hackage",
+        "repo": "/home/dan/pro/haskell/my/upload-doc-to-hackage",
         "rev": "345639ca7e491a84a06538fc7b2bf6fedf0c0681",
         "type": "git"
     }

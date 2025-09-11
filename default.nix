@@ -32,28 +32,11 @@ let
       hsOverlays;
   });
 
-  hls = pkgs.haskell.lib.overrideCabal hsPkgs.haskell-language-server
-    (_: { enableSharedExecutables = true; });
-
-  shell = hsPkgs.shellFor {
-    packages = p: [ p.robin-hood-profit ];
-    nativeBuildInputs = (with pkgs; [
-      cabal-install
-      ghcid
-      hlint
-      niv
-    ]) ++ [ hls ];
-    shellHook = ''
-      export PS1='$ '
-      echo $(dirname $(dirname $(which ghc)))/share/doc > .haddock-ref
-    '';
-  };
 
   robin-hood-profit = hsPkgs.robin-hood-profit;
 in {
   inherit hsPkgs;
   inherit ghc;
   inherit pkgs;
-  inherit shell;
   inherit robin-hood-profit;
 }

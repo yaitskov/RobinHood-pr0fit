@@ -38,7 +38,7 @@ library
 
   build-depends:
       Decimal
-    , attoparsec-monoidal
+    , attoparsec-isotropic
     , base >=4 && <5
     , bytestring < 0.13
     , containers < 0.9

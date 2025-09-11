@@ -14,12 +14,17 @@ in hfinal: hprev:
 (listToAttrs (map (a:
   nameValuePair a.name
     (dontCheck (hfinal.callCabal2nix a.name a.source { }))) [
-      { name = "attoparsec-monoidal";  source = sources.attoparsec-monoidal; }
+      { name = "attoparsec-isotropic";  source = sources.attoparsec-isotropic; }
       { name = "trace-embrace";  source = sources.trace-embrace; }
     ])) // {
       "haddock-use-refs" = hfinal.callHackageDirect
         { pkg = "haddock-use-refs";
           ver = "1.0.1";
           sha256 = "sha256-fxrfMQ4CUthzNwYVjwV5kJmmPgimVpbnVhxnoYi1GrE=";
+        } {};
+      "th-lock" = hfinal.callHackageDirect
+        { pkg = "th-lock";
+          ver = "0.0.4";
+          sha256 = "sha256-chFv77J0oWLzf4zAX4Awv7uhQEhiPegvPgrLWNaEuhs=";
         } {};
     }

@@ -12,53 +12,22 @@ copyright:     Daniil Iaitkov 2025
 category:      System
 build-type:    Simple
 bug-reports:   https://github.com/yaitskov/RobinHood-pr0fit/issues
+tested-with:
+        GHC == { 9.10.1, 9.12.2 }
+
 source-repository head
   type:
     git
   location:
     https://github.com/yaitskov/RobinHood-pr0fit.git
 
-library
-  exposed-modules:
-    RobinHood.AppState
-    RobinHood.CellParser
-    RobinHood.Char8
-    RobinHood.Cmd
-    RobinHood.Compactable
-    RobinHood.CsvParser
-    RobinHood.Date
-    RobinHood.Instrument
-    RobinHood.Money
-    RobinHood.Prelude
-    RobinHood.Profit
-    RobinHood.Report
-    RobinHood.RobinRow
-    RobinHood.Run
-    RobinHood.TargetPeriod
-
-  build-depends:
-      Decimal
-    , attoparsec-isotropic
-    , base >=4 && <5
-    , bytestring < 0.13
-    , containers < 0.9
-    , directory < 1.4
-    , exceptions < 0.11
-    , filepath < 1.6
-    , generic-lens < 3.0
-    , lens < 6.0
-    , mtl
-    , optparse-applicative
-    , relude
-    , semigroups < 0.22
-    , template-haskell < 2.24
-    , text < 3.0
-    , time
-    , trace-embrace
-
-  hs-source-dirs: src
+common base
   default-language: Haskell2010
   ghc-options: -Wall
+  build-depends:
+    , attoparsec-isotropic
+    , base >=4 && <5
+    , relude
   default-extensions:
     ConstraintKinds
     DataKinds
@@ -81,6 +50,60 @@ library
     TypeApplications
     TypeOperators
     TypeSynonymInstances
+
+library
+  import: base
+  hs-source-dirs: src
+  exposed-modules:
+    RobinHood.AppState
+    RobinHood.CellParser
+    RobinHood.Char8
+    RobinHood.Cmd
+    RobinHood.Compactable
+    RobinHood.CsvParser
+    RobinHood.Date
+    RobinHood.Instrument
+    RobinHood.Money
+    RobinHood.Prelude
+    RobinHood.Profit
+    RobinHood.Report
+    RobinHood.RobinRow
+    RobinHood.Run
+    RobinHood.TargetPeriod
+
+  build-depends:
+    , Decimal
+    , bytestring < 0.13
+    , containers < 0.9
+    , directory < 1.4
+    , exceptions < 0.11
+    , filepath < 1.6
+    , generic-lens < 3.0
+    , lens < 6.0
+    , mtl
+    , optparse-applicative
+    , semigroups < 0.22
+    , template-haskell < 2.24
+    , text < 3.0
+    , time
+    , trace-embrace
+
+test-suite test
+  import: base
+  type: exitcode-stdio-1.0
+  main-is: Driver.hs
+  other-modules:
+    Discovery
+    RobinHood.Test.Money
+  hs-source-dirs: test
+  ghc-options: -Wall -rtsopts -threaded -main-is Driver
+  build-depends:
+    , robin-hood-profit
+    , tasty
+    , tasty-discover
+    , tasty-hunit
+    , tasty-quickcheck
+    , text
 
 executable rhprofit
   main-is: Main.hs

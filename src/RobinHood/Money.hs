@@ -34,12 +34,19 @@ partSum nToTake = go nToTake 0
       | otherwise = go (nLeft - shares) (interSum + fromIntegral shares * price) t
     go _ !finalSum [] = (finalSum, [])
 
+-- parseBracket ::
+parseBracket :: CellParser a -> CellParser b -> CellParser c -> CellParser b
+parseBracket openPar inPar closePar =
+  (void openPar >* (inPar <?> "enParented") *< void closePar) <|> inPar
+
+parseEnParent :: CellParser a -> CellParser a
+parseEnParent inPar = parseBracket (char8 '(') inPar (char8 ')')
 
 -- > -$38,877.00
 parseMoney :: CellParser Money
-parseMoney = go <?> "money"
+parseMoney = parseEnParent (bareMoney <?> "bareMoney")
   where
-    go = do
+    bareMoney = do
       sign <- (void (char8 '-') >> pure (-1)) <|> pure 1
       void (char8 '$' <?> "dollar sign")
       n <- B8.foldl' step 0 <$> takeWhile1 isDigitOrComma

@@ -7,7 +7,7 @@ import Data.List as X (isSuffixOf)
 import Data.Map.Strict as X (insert, lookup, elems, unionsWith, toAscList)
 import Data.Semigroup as X (Min (..), Max (..))
 import Data.Time as X
-import Debug.TraceEmbrace as X
+import Debug.TraceEmbrace as X hiding (a)
 import GHC.Generics as X
 import Relude as X
 import Text.Printf as X

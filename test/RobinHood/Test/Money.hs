@@ -24,3 +24,15 @@ prop_parseMoney_showed_positive_cents (Positive n) =
   where
     cents = n `mod` 100
     centsStr :: String = printf "$0.%02d" cents
+
+prop_parseMoney_thousands :: Positive Int -> Bool
+prop_parseMoney_thousands (Positive n) =
+  parseOnly parseMoney (DTE.encodeUtf8 $ "$" <> show n <> ",000.00") == pure (Money $ fromIntegral n * 1_000)
+
+prop_parseMoney_parentheses :: Positive Int -> Bool
+prop_parseMoney_parentheses (Positive n) =
+  parseOnly parseMoney (DTE.encodeUtf8 $ "($" <> show n <> ".00)") == pure (Money $ fromIntegral n)
+
+prop_parseMoney_parentheses_negative :: Positive Int -> Bool
+prop_parseMoney_parentheses_negative (Positive n) =
+  parseOnly parseMoney (DTE.encodeUtf8 $ "(-$" <> show n <> ".00)") == pure (Money $ fromIntegral n * (-1))

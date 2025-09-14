@@ -1,20 +1,37 @@
-# Welcome to robin-hood-profit
+# Robin-Hood quarter profit report builder
 
-This is a reimplementation of
+This is a Haskell reimplementation of
 [robin-hood-profit](https://github.com/yaitskov/robin-hood-profit)
-without pandas or similar library.
+without pandas or similar data frame library.
 
-Python version struggles form pandas warnings I was not able to fix.
+The tool has a command line interface. It generates quarter profit
+reports out of [Robin-Hood](https://robinhood.com/) activity reports
+available in the CSV format. Quatities from such reports are important
+for estimating quarter prepayment to [IRS](https://irs.gov/) during
+current tax year.  According to IRS guidline if you postope pay till
+next tax year (i.e Jan-Apr) and amount you owe is greater than $1k
+you may have to pay a penalty.
+
+In general any quarter report requires sequential processing of all
+history (shares might be bought at one year and sold a decade later)
+since a Robin-Hood account establishment preceding the target
+quater. This data aspect accents algorithm implementation on memory
+efficiency and throughput.
+
+
+
+A Python version struggles with warnings from
+[Pandas](https://pandas.pydata.org/) I was not able to fix.
 
 Main purpose for this version is to use
 [attoparsec-isotropic](https://github.com/yaitskov/attoparsec-isotropic)
 to implement right-to-left incremental CSV parser.  Such trick gives
-advantage over RAM gready Python version loading whole CSV report in
+advantage over RAM gready Python version loading a whole CSV report in
 memory.
 
-Problem with these CSV reports that row order is important and rows
-follow in reverse chronological order. So one way stream parsing with
-original attoparsec is not possible.
+A problem with these CSV reports that row order is important and rows
+follow in the reverse chronological order. So one way stream parsing
+with the original attoparsec is not possible.
 
 Another minor feature is experimenting with Decimal type for lossless
 handling account balance and average stock price.

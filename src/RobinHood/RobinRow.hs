@@ -55,27 +55,37 @@ parseRobinRow :: Set ByteString -> [ByteString] -> Either String (Maybe RobinRow
 parseRobinRow codesToIgnore rowCells =
   case rowCells of
    [_activityDate, rawProcessDate, _settleDate, rawInstrument, _description,
-    rawTransCode, rawQuantity, rawPrice, rawAmount, _unnamedEmpty] ->
-     case rawTransCode of
-       "Trans Code" -> pure $ Just RobinHeaderRow
-       "ACH" ->  parseDateMoney RobinMoneyMoveRow rawProcessDate rawAmount
-       "GOLD" -> parseDateMoney RobinFeeRow rawProcessDate rawAmount
-       "GMPC" -> parseDateMoney RobinFeeRow rawProcessDate rawAmount
-       "GDBP" -> parseDateMoney RobinBonusRow rawProcessDate rawAmount
-       "DFEE" -> parseInstrDateMoney RobinAgencyFeeRow rawInstrument rawProcessDate rawAmount
-       "AFEE" -> parseInstrDateMoney RobinAgencyFeeRow rawInstrument rawProcessDate rawAmount
-       "DTAX" -> parseInstrDateMoney RobinForeignTaxRow rawInstrument rawProcessDate rawAmount
-       "INT" ->  parseDateMoney RobinInterestRow rawProcessDate rawAmount
-       "CDIV" -> parseInstrDateMoney RobinDividendRow rawInstrument rawProcessDate rawAmount
-       "Sell" -> parseTrade rawProcessDate rawInstrument rawQuantity rawPrice rawAmount
-       "Buy" ->  parseTrade rawProcessDate rawInstrument rawQuantity rawPrice rawAmount
-       "SPL" ->  pure Nothing -- ?
-       "SPR" ->  pure Nothing -- ?
-       "" ->     pure Nothing
-       oCode | oCode `member` codesToIgnore -> pure Nothing
-             | otherwise -> fail $ "Unknown Trans Code: " <> show oCode
+    rawTransCode, rawQuantity, rawPrice, rawAmount, ""] ->
+     processRow rawProcessDate rawInstrument rawTransCode rawQuantity rawPrice rawAmount
+   [_activityDate, rawProcessDate, _settleDate, rawInstrument, _description,
+    rawTransCode, rawQuantity, rawPrice, rawAmount] ->
+     processRow rawProcessDate rawInstrument rawTransCode rawQuantity rawPrice rawAmount
+   [ "", "", "", "", "", "", "", "", "",
+     _dataProvidedIsForInformationPurposeOnlyBlablabla] ->
+     pure Nothing
+   [ "" ] -> pure Nothing -- Skip a row with a single empty cell
    o -> fail $ "Wrong number of columns in " <> show o
   where
+    processRow rawProcessDate rawInstrument rawTransCode rawQuantity rawPrice rawAmount =
+      case rawTransCode of
+        "Trans Code" -> pure $ Just RobinHeaderRow
+        "ACH" ->  parseDateMoney RobinMoneyMoveRow rawProcessDate rawAmount
+        "GOLD" -> parseDateMoney RobinFeeRow rawProcessDate rawAmount
+        "GMPC" -> parseDateMoney RobinFeeRow rawProcessDate rawAmount
+        "GDBP" -> parseDateMoney RobinBonusRow rawProcessDate rawAmount
+        "DFEE" -> parseInstrDateMoney RobinAgencyFeeRow rawInstrument rawProcessDate rawAmount
+        "AFEE" -> parseInstrDateMoney RobinAgencyFeeRow rawInstrument rawProcessDate rawAmount
+        "DTAX" -> parseInstrDateMoney RobinForeignTaxRow rawInstrument rawProcessDate rawAmount
+        "INT" ->  parseDateMoney RobinInterestRow rawProcessDate rawAmount
+        "CDIV" -> parseInstrDateMoney RobinDividendRow rawInstrument rawProcessDate rawAmount
+        "Sell" -> parseTrade rawProcessDate rawInstrument rawQuantity rawPrice rawAmount
+        "Buy" ->  parseTrade rawProcessDate rawInstrument rawQuantity rawPrice rawAmount
+        "SPL" ->  pure Nothing -- ?
+        "SPR" ->  pure Nothing -- ?
+        "" ->     pure Nothing
+        oCode | oCode `member` codesToIgnore -> pure Nothing
+              | otherwise -> fail $ "Unknown Trans Code: " <> show oCode
+
     parseCell :: (CellParser a) -> ByteString -> Either String a
     parseCell p bs =
       case parseOnly p bs of

@@ -60,6 +60,7 @@ parseRobinRow codesToIgnore rowCells =
        "Trans Code" -> pure $ Just RobinHeaderRow
        "ACH" ->  parseDateMoney RobinMoneyMoveRow rawProcessDate rawAmount
        "GOLD" -> parseDateMoney RobinFeeRow rawProcessDate rawAmount
+       "GMPC" -> parseDateMoney RobinFeeRow rawProcessDate rawAmount
        "GDBP" -> parseDateMoney RobinBonusRow rawProcessDate rawAmount
        "DFEE" -> parseInstrDateMoney RobinAgencyFeeRow rawInstrument rawProcessDate rawAmount
        "AFEE" -> parseInstrDateMoney RobinAgencyFeeRow rawInstrument rawProcessDate rawAmount

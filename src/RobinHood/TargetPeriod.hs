@@ -38,7 +38,7 @@ instance Compactable TargetPeriod where
 
 monthToQuater :: Int -> Quarter
 monthToQuater m
-  | m > 0 && m < 13 = Quarter $ ((m - 1) `div` 3) * 3 + 1
+  | m > 0 && m < 13 = Quarter $ (m `div` 4)  + 1
   | otherwise = error $ "Month out of range: " <> show m
 
 targetPeriodsByDate :: Date -> Set TargetPeriod -> [TargetPeriod]

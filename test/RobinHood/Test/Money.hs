@@ -29,10 +29,12 @@ prop_parseMoney_thousands :: Positive Int -> Bool
 prop_parseMoney_thousands (Positive n) =
   parseOnly parseMoney (DTE.encodeUtf8 $ "$" <> show n <> ",000.00") == pure (Money $ fromIntegral n * 1_000)
 
+-- new report uses parentheses for encoding negative values
+-- lol
 prop_parseMoney_parentheses :: Positive Int -> Bool
 prop_parseMoney_parentheses (Positive n) =
-  parseOnly parseMoney (DTE.encodeUtf8 $ "($" <> show n <> ".00)") == pure (Money $ fromIntegral n)
+  parseOnly parseMoney (DTE.encodeUtf8 $ "($" <> show n <> ".00)") == pure (Money $ fromIntegral n * (-1))
 
 prop_parseMoney_parentheses_negative :: Positive Int -> Bool
 prop_parseMoney_parentheses_negative (Positive n) =
-  parseOnly parseMoney (DTE.encodeUtf8 $ "(-$" <> show n <> ".00)") == pure (Money $ fromIntegral n * (-1))
+  parseOnly parseMoney (DTE.encodeUtf8 $ "(-$" <> show n <> ".00)") == pure (Money $ fromIntegral n)

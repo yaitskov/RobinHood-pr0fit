@@ -35,16 +35,16 @@ partSum nToTake = go nToTake 0
     go _ !finalSum [] = (finalSum, [])
 
 -- parseBracket ::
-parseBracket :: CellParser a -> CellParser b -> CellParser c -> CellParser b
-parseBracket openPar inPar closePar =
-  (void openPar >* (inPar <?> "enParented") *< void closePar) <|> inPar
+parseBracket :: (b -> b) -> CellParser a -> CellParser b -> CellParser c -> CellParser b
+parseBracket flipSign openPar inPar closePar =
+  (void openPar >* (flipSign <$> inPar <?> "enParented") *< void closePar) <|> inPar
 
-parseEnParent :: CellParser a -> CellParser a
-parseEnParent inPar = parseBracket (char8 '(') inPar (char8 ')')
+parseEnParent :: (a -> a) -> CellParser a -> CellParser a
+parseEnParent flipSign inPar = parseBracket flipSign (char8 '(') inPar (char8 ')')
 
 -- > -$38,877.00
 parseMoney :: CellParser Money
-parseMoney = parseEnParent (bareMoney <?> "bareMoney")
+parseMoney = parseEnParent (* (-1)) (bareMoney <?> "bareMoney")
   where
     bareMoney = do
       sign <- (void (char8 '-') >> pure (-1)) <|> pure 1

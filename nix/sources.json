@@ -1,16 +1,4 @@
 {
-    "attoparsec-isotropic": {
-        "branch": "master",
-        "description": "attoparsec fork to parse input from right-to-left",
-        "homepage": "http://hackage.haskell.org/package/attoparsec",
-        "owner": "yaitskov",
-        "repo": "attoparsec-isotropic",
-        "rev": "6e3c0e31619f21f4667492461f11d185bcc4b6da",
-        "sha256": "0h1y74xiyvy8nrd9v43dazh8w61jj6bbff9xyn99rznbigcijxwk",
-        "type": "tarball",
-        "url": "https://github.com/yaitskov/attoparsec-isotropic/archive/6e3c0e31619f21f4667492461f11d185bcc4b6da.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "nixpkgs": {
         "branch": "master",
         "owner": "NixOS",
@@ -20,12 +8,6 @@
         "type": "tarball",
         "url": "https://github.com/NixOS/nixpkgs/archive/da5af46a09eeb2b1c8f4193d626727d5b7460601.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "trace-embrace": {
-        "sha256": "05y2v33k978kbmvrilfvy8pkdkswygdxn4draqs7wlpsam0ds1pn",
-        "type": "tarball",
-        "url": "https://github.com/yaitskov/trace-embrace/archive/6c6c61c7fbfdbdc08885d2cbb0d4ccaf2678c33b.tar.gz",
-        "url_template": "https://github.com/yaitskov/trace-embrace/archive/6c6c61c7fbfdbdc08885d2cbb0d4ccaf2678c33b.tar.gz"
     },
     "upload-doc-to-hackage": {
         "sha256": "0r1q21dngyalrm0ad204y470wr3s89mssbw9qi195hpgbp8qs8d2",

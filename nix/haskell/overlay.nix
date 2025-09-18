@@ -14,10 +14,18 @@ in hfinal: hprev:
 (listToAttrs (map (a:
   nameValuePair a.name
     (dontCheck (hfinal.callCabal2nix a.name a.source { }))) [
-      { name = "attoparsec-isotropic";  source = sources.attoparsec-isotropic; }
-      { name = "trace-embrace";  source = sources.trace-embrace; }
     ])) // {
       "upload-doc-to-hackage" = hfinal.callPackage sources.upload-doc-to-hackage {};
+      "attoparsec-isotropic" = hfinal.callHackageDirect
+        { pkg = "attoparsec-isotropic";
+          ver = "0.14.6";
+          sha256 = "sha256-Q0dSfzneZ0POHGQuIFQa7Qrlv+lNsoakJm7PpcJDNsA=";
+        } {};
+      "trace-embrace" = hfinal.callHackageDirect
+        { pkg = "trace-embrace";
+          ver = "1.2.0";
+          sha256 = "sha256-O3865lJryaDfDM4NQVHNu45DI/vNxofY4/+RVcnJlPg=";
+        } {};
       "haddock-use-refs" = hfinal.callHackageDirect
         { pkg = "haddock-use-refs";
           ver = "1.0.1";

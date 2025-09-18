@@ -29,6 +29,8 @@ build-type:    Simple
 bug-reports:   https://github.com/yaitskov/RobinHood-pr0fit/issues
 extra-doc-files:
   changelog.md
+extra-source-files:
+  trace-embrace.yaml
 tested-with:
         GHC == { 9.10.1, 9.12.2 }
 
@@ -42,7 +44,7 @@ common base
   default-language: Haskell2010
   ghc-options: -Wall
   build-depends:
-    , attoparsec-isotropic < 1
+    , attoparsec-isotropic >=0.14.6 && <1
     , base >=4.21 && <5
     , relude < 2
   default-extensions:

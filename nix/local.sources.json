@@ -1,16 +1,4 @@
 {
-    "trace-embrace": {
-        "branch": "master",
-        "repo": "/home/dan/pro/haskell/my/trace-embrace",
-        "rev": "9b6786e8d7d5ef938ae9a03533a1e4cd121d9197",
-        "type": "git"
-    },
-    "attoparsec-isotropic": {
-        "branch": "master",
-        "repo": "/home/dan/pro/haskell/my/attoparsec-isotropic",
-        "rev": "f60c6cc555e5f119752dadfdd4720ae21a380e93",
-        "type": "git"
-    },
     "nixpkgs": {
         "branch": "master",
         "repo": "/home/dan/pro/nixpkgs",

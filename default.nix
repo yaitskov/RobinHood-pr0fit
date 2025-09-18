@@ -52,7 +52,7 @@ let
     "^src.*$"
     "^exe.*$"
     "^test.*$"
-    "^(changelog[.]md|LICENSE)$"
+    "^(changelog[.]md|LICENSE|trace-embrace[.]yaml)$"
     "^.*\\.cabal$"
   ];
 

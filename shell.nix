@@ -14,7 +14,7 @@ hsPkgs.shellFor {
     ghcid
     hlint
     niv
-  ]) ++ [ hls ];
+  ]) ++ [ hls hsPkgs.upload-doc-to-hackage ];
   shellHook = ''
       export PS1='$ '
       echo $(dirname $(dirname $(which ghc)))/share/doc > .haddock-ref

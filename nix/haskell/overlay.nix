@@ -17,6 +17,7 @@ in hfinal: hprev:
       { name = "attoparsec-isotropic";  source = sources.attoparsec-isotropic; }
       { name = "trace-embrace";  source = sources.trace-embrace; }
     ])) // {
+      "upload-doc-to-hackage" = hfinal.callPackage sources.upload-doc-to-hackage {};
       "haddock-use-refs" = hfinal.callHackageDirect
         { pkg = "haddock-use-refs";
           ver = "1.0.1";

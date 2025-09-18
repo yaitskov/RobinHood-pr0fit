@@ -2,7 +2,22 @@ cabal-version: 3.0
 name:          robin-hood-profit
 version:       0.0.2
 synopsis:      Calculate per instrument profit from Robin-Hood activity report
-description:   Robin-Hood can generate activity report in CSV format.
+description:
+  The tool has a command line interface. It generates quarter profit
+  reports out of Robin-Hood activity reports
+  available in the CSV format. Quatities from such reports are important
+  for estimating quarter prepayment to IRS during
+  current tax year.  According to IRS guidline if you postope pay till
+  next tax year (i.e Jan-Apr) and amount you owe is greater than $1k
+  you may have to pay a penalty.
+
+  In general any quarter report requires sequential processing of all
+  history (shares might be bought at one year and sold a decade later)
+  since a Robin-Hood account establishment preceding the target
+  quater. This data aspect accents algorithm implementation on memory
+  efficiency and throughput.
+
+  See Readme file for details.
 
 homepage:      http://github.com/yaitskov/RobinHood-pr0fit
 license:       BSD-3-Clause
@@ -12,6 +27,8 @@ copyright:     Daniil Iaitkov 2025
 category:      System
 build-type:    Simple
 bug-reports:   https://github.com/yaitskov/RobinHood-pr0fit/issues
+extra-doc-files:
+  changelog.md
 tested-with:
         GHC == { 9.10.1, 9.12.2 }
 
@@ -25,9 +42,9 @@ common base
   default-language: Haskell2010
   ghc-options: -Wall
   build-depends:
-    , attoparsec-isotropic
-    , base >=4 && <5
-    , relude
+    , attoparsec-isotropic < 1
+    , base >=4.21 && <5
+    , relude < 2
   default-extensions:
     ConstraintKinds
     DataKinds
@@ -73,21 +90,21 @@ library
     RobinHood.TargetPeriod
 
   build-depends:
-    , Decimal
+    , Decimal < 0.6
     , bytestring < 0.13
     , containers < 0.9
     , directory < 1.4
     , exceptions < 0.11
     , filepath < 1.6
-    , generic-lens < 3.0
-    , lens < 6.0
-    , mtl
-    , optparse-applicative
+    , generic-lens < 3
+    , lens < 6
+    , mtl < 3
+    , optparse-applicative < 1
     , semigroups < 0.22
     , template-haskell < 2.24
-    , text < 3.0
-    , time
-    , trace-embrace
+    , text < 3
+    , time < 2
+    , trace-embrace < 2
 
 test-suite test
   import: base
@@ -115,7 +132,7 @@ executable rhprofit
     Paths_robin_hood_profit
   hs-source-dirs:
     exe
-  ghc-options: -O2 -Wall -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base
     , robin-hood-profit

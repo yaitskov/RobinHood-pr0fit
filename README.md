@@ -71,3 +71,12 @@ Q1/2025|      2708|         0|         0|      2708|    649.92|2025-02-03
    2025|      2708|         0|         0|      2708|    649.92|2025-02-03
       *|      2708|         0|         0|      2708|    649.92|2025-02-03
 ```
+
+
+## Static linking
+
+Static is not enabled by default, because GitHub CI job times out.
+
+```shell
+nix-build --cores 20 -j 20 --arg staticBuild true
+```

@@ -1,6 +1,6 @@
 cabal-version: 3.0
 name:          robin-hood-profit
-version:       0.0.1
+version:       0.0.2
 synopsis:      Calculate per instrument profit from Robin-Hood activity report
 description:   Robin-Hood can generate activity report in CSV format.
 
